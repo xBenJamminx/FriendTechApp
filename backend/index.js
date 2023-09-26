@@ -15,11 +15,11 @@ connectDB();
 const app = express();
 const port = 3001;
 
-// Use Routes
-app.use('/api/items', items); 
-
 // Use CORS middleware to handle cross-origin issues
-app.use(cors());
+app.use(cors()); // Move this line before app.use('/api/items', items);
+
+// Use Routes
+app.use('/api/items', items);  // This comes after CORS middleware
 
 // Create a test API route
 app.get('/api/test', (req, res) => {

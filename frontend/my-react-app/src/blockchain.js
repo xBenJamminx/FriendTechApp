@@ -1,8 +1,8 @@
 // Import Web3 library
 import Web3 from 'web3';
 
-// Initialize web3 instance
-const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545');
+// Initialize web3 instance with Infura
+const web3 = new Web3(new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`));
 
 // Function to fetch Ethereum balance
 export const fetchEtherBalance = async (address) => {
@@ -16,4 +16,3 @@ export const fetchEtherBalance = async (address) => {
 };
 
 // Add more functions for blockchain interactions here
-

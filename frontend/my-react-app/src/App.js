@@ -1,6 +1,9 @@
 // Import necessary modules
 import React, { useEffect } from 'react';
 
+// Import the ItemList component
+import ItemList from './components/ItemList'; //
+
 // Define App component
 function App() {
   // Using useEffect to run code after the component mounts
@@ -20,6 +23,9 @@ function App() {
     <div className="App">
       <h1>FriendTechApp</h1>
       <h3>App.js</h3>
+
+      {/* Using the ItemList component */}
+      <ItemList />
     </div>
   );
 }

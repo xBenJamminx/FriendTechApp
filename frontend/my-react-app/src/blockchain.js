@@ -2,7 +2,7 @@
 import Web3 from 'web3';
 
 // Initialize web3 instance with Infura
-const web3 = new Web3(`https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`);
+const web3 = new Web3(`https://mainnet.infura.io/${process.env.REACT_APP_INFURA_API_KEY}`);
 
 // Function to fetch Ethereum balance
 export const fetchEtherBalance = async (address) => {

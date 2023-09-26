@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import ItemList from './components/ItemList';
-import { fetchEtherBalance } from './blockchain';  
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [balance, setBalance] = useState(null);
+  // State to store the items fetched from the backend
+  const [items, setItems] = useState([]);
 
-  // Fetch Ether balance when component mounts
+  // Function to fetch items from the backend
+  const fetchItems = async () => {
+    const res = await fetch('http://localhost:3001/api/items');
+    const data = await res.json();
+    setItems(data);
+  };
+
+  // Use useEffect to run fetchItems once when the component mounts
   useEffect(() => {
-    const address = '0xA41A4b84D74E085bd463386d55c3b6dDe6aa2759';
-    fetchEtherBalance(address)
-      .then(setBalance)
-      .catch(console.error);
+    fetchItems();
   }, []);
 
   return (
-    <div className="App">
-      {/* Display Ethereum balance */}
-      <h1>Ethereum Balance: {balance} ETH</h1>  
-      
-      <ItemList />
+    <div>
+      <h1>Item List</h1>
+      <ul>
+        {items.map((item) => (
+          <li key={item._id}>{item.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }

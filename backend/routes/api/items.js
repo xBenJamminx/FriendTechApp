@@ -1,6 +1,5 @@
-const Web3 = require('web3');  // Importing Web3
-const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/YOUR_INFURA_API_KEY'));
-
+const Web3 = require('web3');
+const web3 = new Web3(`https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`);
 
 // Importing required modules
 const express = require('express');

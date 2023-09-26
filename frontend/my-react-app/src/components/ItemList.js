@@ -7,23 +7,10 @@ const ItemList = () => {
 
   // Fetching items from our backend API
   useEffect(() => {
-    console.log('Fetching items...');  // Log to indicate start of fetching
     fetch('http://localhost:3001/api/items')
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          // Log an error if the fetch does not return ok
-          console.error(`Server responded with ${res.status}`);
-        }
-      })
-      .then((data) => {
-        console.log('Data fetched:', data);  // Log the fetched data
-        setItems(data);
-      })
-      .catch((err) => {
-        console.error('Fetch error:', err);  // Log fetch errors
-      });
+      .then((res) => res.json())
+      .then((data) => setItems(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

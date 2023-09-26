@@ -1,9 +1,12 @@
 // Import the necessary modules
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
 
 // Import connectDB using ES6 import syntax
-import connectDB from './db';
+const connectDB = require('./db');
+
+// Import routes
+const items = require('./routes/api/items');
 
 // Connect to MongoDB
 connectDB();
@@ -11,6 +14,9 @@ connectDB();
 // Initialize the express application
 const app = express();
 const port = 3001;
+
+// Use Routes
+app.use('/api/items', items); 
 
 // Use CORS middleware to handle cross-origin issues
 app.use(cors());

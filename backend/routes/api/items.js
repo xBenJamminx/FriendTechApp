@@ -1,3 +1,7 @@
+const Web3 = require('web3');  // Importing Web3
+const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/YOUR_INFURA_API_KEY'));
+
+
 // Importing required modules
 const express = require('express');
 const router = express.Router();

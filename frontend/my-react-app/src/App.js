@@ -1,34 +1,26 @@
-// Import necessary modules
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import ItemList from './components/ItemList';
+import { fetchEtherBalance } from './blockchain';  
 
-// Import the ItemList component
-import ItemList from './components/ItemList'; //
-
-// Define App component
 function App() {
-  // Using useEffect to run code after the component mounts
+  const [balance, setBalance] = useState(null);
+
+  // Fetch Ether balance when component mounts
   useEffect(() => {
-    fetch('http://localhost:3001/api/test')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    const address = '0xA41A4b84D74E085bd463386d55c3b6dDe6aa2759';
+    fetchEtherBalance(address)
+      .then(setBalance)
+      .catch(console.error);
   }, []);
 
-  // Rendering the component
   return (
     <div className="App">
-      <h1>FriendTechApp</h1>
-      <h3>App.js</h3>
-
-      {/* Using the ItemList component */}
+      {/* Display Ethereum balance */}
+      <h1>Ethereum Balance: {balance} ETH</h1>  
+      
       <ItemList />
     </div>
   );
 }
 
-// Exporting the App component to be used in index.js
 export default App;
